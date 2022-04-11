@@ -4,30 +4,39 @@
 #
 Name     : pypi-selinux
 Version  : 0.2.1
-Release  : 3
+Release  : 4
 URL      : https://files.pythonhosted.org/packages/1a/f1/5755b134895bb9b29d6937cae52d0f58140bb97df0f72c33231345294e80/selinux-0.2.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/1a/f1/5755b134895bb9b29d6937cae52d0f58140bb97df0f72c33231345294e80/selinux-0.2.1.tar.gz
 Summary  : shim selinux module
 Group    : Development/Tools
 License  : MIT
+Requires: pypi-selinux-license = %{version}-%{release}
 Requires: pypi-selinux-python = %{version}-%{release}
 Requires: pypi-selinux-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-BuildRequires : pypi(pluggy)
-BuildRequires : py-python
 BuildRequires : pypi(distro)
 BuildRequires : pypi(pip)
+BuildRequires : pypi(py)
 BuildRequires : pypi(setuptools)
 BuildRequires : pypi(setuptools_scm)
 BuildRequires : pypi(setuptools_scm_git_archive)
 BuildRequires : pypi(wheel)
-BuildRequires : pytest
-BuildRequires : tox
-BuildRequires : pypi(virtualenv)
+BuildRequires : pypi-pluggy
+BuildRequires : pypi-pytest
+BuildRequires : pypi-tox
+BuildRequires : pypi-virtualenv
 
 %description
 .. image:: https://travis-ci.com/pycontribs/selinux.svg?branch=master
 :target: https://travis-ci.com/pycontribs/selinux
+
+%package license
+Summary: license components for the pypi-selinux package.
+Group: Default
+
+%description license
+license components for the pypi-selinux package.
+
 
 %package python
 Summary: python components for the pypi-selinux package.
@@ -59,7 +68,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1639064622
+export SOURCE_DATE_EPOCH=1649701055
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -74,6 +83,8 @@ python3 -m build --wheel --skip-dependency-check --no-isolation
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-selinux
+cp %{_builddir}/selinux-0.2.1/LICENSE %{buildroot}/usr/share/package-licenses/pypi-selinux/357c3fcfb0d2ce5d76d67ef977706eb8147f9fc2
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -81,6 +92,10 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-selinux/357c3fcfb0d2ce5d76d67ef977706eb8147f9fc2
 
 %files python
 %defattr(-,root,root,-)
