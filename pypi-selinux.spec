@@ -4,7 +4,7 @@
 #
 Name     : pypi-selinux
 Version  : 0.2.1
-Release  : 9
+Release  : 10
 URL      : https://files.pythonhosted.org/packages/1a/f1/5755b134895bb9b29d6937cae52d0f58140bb97df0f72c33231345294e80/selinux-0.2.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/1a/f1/5755b134895bb9b29d6937cae52d0f58140bb97df0f72c33231345294e80/selinux-0.2.1.tar.gz
 Summary  : shim selinux module
