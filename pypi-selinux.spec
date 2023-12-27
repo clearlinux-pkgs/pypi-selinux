@@ -4,7 +4,7 @@
 #
 Name     : pypi-selinux
 Version  : 0.3.0
-Release  : 14
+Release  : 15
 URL      : https://files.pythonhosted.org/packages/25/07/51acd62e1e15e1172d46f7e32faf138725b147f8c08dbf2d512159d7a310/selinux-0.3.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/25/07/51acd62e1e15e1172d46f7e32faf138725b147f8c08dbf2d512159d7a310/selinux-0.3.0.tar.gz
 Summary  : shim selinux module
